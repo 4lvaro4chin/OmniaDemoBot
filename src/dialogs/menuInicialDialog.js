@@ -12,7 +12,7 @@ class MenuInicialDialog extends ComponentDialog {
             this.callOptionStep.bind(this),
             this.finalStep.bind(this)
         ]))
-            .addDialog(new NumberPrompt(NUMBER_PROMPT));
+            .addDialog(new NumberPrompt(NUMBER_PROMPT, this.optionPromptValidator));
 
         this.initialDialogId = WATERFALL_DIALOG; 
     }
@@ -25,7 +25,9 @@ class MenuInicialDialog extends ComponentDialog {
         \n**2.** Reinicio de contraseña SAP
         \n Ingresa el número.`;
 
-        return await stepContext.prompt(NUMBER_PROMPT, { prompt: promptText });
+        const retryPromptText = `Ingresar una opción válida.`
+
+        return await stepContext.prompt(NUMBER_PROMPT, { prompt: promptText, retryPrompt: retryPromptText });
     }
 
     async callOptionStep(stepContext) {
@@ -50,6 +52,10 @@ class MenuInicialDialog extends ComponentDialog {
     async finalStep(stepContext) {
         console.log('Fin Menu Inicial Dialog');
         return await stepContext.endDialog();
+    }
+
+    async optionPromptValidator(promptContext) {
+        return promptContext.recognized.succeeded && promptContext.recognized.value > 0 && promptContext.recognized.value < 3;
     }
 }
 
