@@ -1,0 +1,33 @@
+{
+  "name": "omniademobot",
+  "version": "1.0.0",
+  "description": "Bot desarrollado en el taller de Botframework para Omnia Solution",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "watch": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4lvaro4chin/OmniaDemoBot.git"
+  },
+  "author": "Alvaro Achín A.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/4lvaro4chin/OmniaDemoBot/issues"
+  },
+  "homepage": "https://github.com/4lvaro4chin/OmniaDemoBot#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "base-64": "^1.0.0",
+    "botbuilder": "^4.14.1",
+    "botbuilder-dialogs": "^4.14.1",
+    "dotenv": "^10.0.0",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.12",
+    "path": "^0.12.7",
+    "restify": "^8.5.1",
+    "url": "^0.11.0"
+  }
+}
