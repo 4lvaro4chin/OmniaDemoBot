@@ -1,5 +1,6 @@
 const restify = require('restify')
-const { BotFrameworkAdapter } = require('botbuilder');
+const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
+const { MainDialog  } = require('./src/dialogs/mainDialog');
 
 // Import required bot configuration.
 // This bot's main dialog.
@@ -43,9 +44,13 @@ const onTurnErrorHandler = async (context, error) => {
 // Set the onTurnError for the singleton BotFrameworkAdapter.
 adapter.onTurnError = onTurnErrorHandler;
 
-// Create the main dialog.
-const omniaBot = new OmniaBot();
+const memoryStorage = new MemoryStorage();
+const conversationState = new ConversationState(memoryStorage);
+const userState = new UserState(memoryStorage);
 
+// Create the main dialog.
+const dialog = new MainDialog('mainDialog');
+const omniaBot = new OmniaBot(conversationState, userState, dialog);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {

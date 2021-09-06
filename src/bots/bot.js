@@ -2,14 +2,19 @@ const { ActivityHandler, CardFactory, MessageFactory } = require('botbuilder');
 const { Cards } = require('../cards/card');
 
 class OmniaBot extends ActivityHandler {
-    constructor() {
+    constructor(conversationState, userState, dialog) {
         super();
 
+        this.conversationState = conversationState;
+        this.userState = userState;
+        this.mainDialog = dialog;
+        this.dialogState = this.conversationState.createProperty('DialogState');
+
         this.onMessage(async (context, next) => {
-            let userName = context.activity.from.name;
-            await context.sendActivity(MessageFactory.text(`Hola **${userName}**, has ingresado el texto: **${ context.activity.text }** `));        
+            await (this.mainDialog).run(context, this.dialogState);
+
             // By calling next() you ensure that the next BotHandler is run.
-            await next();
+            await next();            
         });    
 
         this.onMembersAdded(async (context, next) => {
@@ -25,7 +30,14 @@ class OmniaBot extends ActivityHandler {
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
-    }
+        
+        this.onDialog(async (context, next) => {
+            await this.conversationState.saveChanges(context, false);
+            await this.userState.saveChanges(context, false);
+        
+            await next();
+        });        
+    }   
 }
 
 module.exports.OmniaBot = OmniaBot;
