@@ -10,7 +10,19 @@ class OmniaBot extends ActivityHandler {
         this.mainDialog = dialog;
         this.dialogState = this.conversationState.createProperty('DialogState');
 
-        this.onMessage(async (context, next) => {
+        this.onMessage(async (context, next) => {    
+            const currentDialog = await this.dialogState.get(context);
+
+            if (currentDialog === undefined) {
+                //console.log('No dialogs started');
+                let userName = context.activity.from.name;
+                await context.sendActivity(`Hola **${ userName }**, por favor selecciona una de las opciones disponibles.`); 
+            } else if (currentDialog.dialogStack && currentDialog.dialogStack.length > 0) {
+                //console.log('Dialog is running');
+            } else {
+                //console.log('Dialog is not running');
+            }                
+
             await (this.mainDialog).run(context, this.dialogState);
 
             // By calling next() you ensure that the next BotHandler is run.
