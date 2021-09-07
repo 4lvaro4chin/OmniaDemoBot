@@ -35,9 +35,9 @@ class MainDialog extends ComponentDialog {
 
     async finalStep(stepContext) {
         const menuData = stepContext.options;
-
-        menuData.options = stepContext.result.value;
-
+    
+        menuData.option = stepContext.result.value
+    
         switch(menuData.option){
             case 'Si, ver menú.':
                 console.log('Reiniciar Menú Inicial Dialog');
@@ -46,21 +46,21 @@ class MainDialog extends ComponentDialog {
                 let userName = stepContext.context.activity.from.name;
                 await stepContext.context.sendActivity(`**${ userName }** ha sido un gusto poder ayudarte. Si necesitas algo más, no dudes en contactarme.`);
                 break;
-        }        
-
+        }
+    
         console.log('Fin Main Dialog');
         return await stepContext.endDialog();
     }
 
     async run(context, dialogState) {
         var newDialog = true;
-
+    
         const dialogSet = new DialogSet(dialogState);
         dialogSet.add(this);
-
+    
         const dialogContext = await dialogSet.createContext(context);
         const results = await dialogContext.continueDialog();
-
+    
         switch(context.activity.text){
             case 'Si, ver menú.':
                 console.log('Intencion continuar Diálogo');
@@ -68,8 +68,8 @@ class MainDialog extends ComponentDialog {
                 await dialogContext.cancelAllDialogs();
                 await dialogContext.beginDialog(MAIN_DIALOG);
                 break;
-        }        
-
+        }
+    
         if (results.status === DialogTurnStatus.empty && newDialog === true) {
             console.log('Nuevo diálogo Main Dialog');
             await dialogContext.beginDialog(MAIN_DIALOG);
