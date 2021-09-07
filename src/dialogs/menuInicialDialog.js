@@ -1,6 +1,8 @@
 const { ComponentDialog, WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
+const { ReinicioSapDialog } = require("./reinicioSapDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
+const REINICIO_SAP_DIALOG = 'reinicioSapDialog';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
 class MenuInicialDialog extends ComponentDialog {
@@ -12,7 +14,8 @@ class MenuInicialDialog extends ComponentDialog {
             this.callOptionStep.bind(this),
             this.finalStep.bind(this)
         ]))
-            .addDialog(new NumberPrompt(NUMBER_PROMPT, this.optionPromptValidator));
+            .addDialog(new NumberPrompt(NUMBER_PROMPT, this.optionPromptValidator))
+            .addDialog(new ReinicioSapDialog(REINICIO_SAP_DIALOG));
 
         this.initialDialogId = WATERFALL_DIALOG; 
     }
@@ -42,8 +45,7 @@ class MenuInicialDialog extends ComponentDialog {
                 return await stepContext;
             case '2':
                 console.log('Reinicio Usuario SAP');
-                await stepContext.context.sendActivity(`Has seleccionado la opción 2.`);
-                return await stepContext;
+                return await stepContext.beginDialog(REINICIO_SAP_DIALOG);
             default:
                 return await stepContext.endDialog();
         }
