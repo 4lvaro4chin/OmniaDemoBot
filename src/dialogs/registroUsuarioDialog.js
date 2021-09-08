@@ -1,4 +1,7 @@
 const { ComponentDialog, WaterfallDialog, TextPrompt, NumberPrompt, DateTimePrompt, ChoicePrompt, ChoiceFactory, ListStyle } = require("botbuilder-dialogs");
+const { CardFactory } = require("botbuilder");
+const { OdataConnection } = require('../odata/odataConnection');
+const { Cards } = require('../cards/card');
 
 const WATERFALL_DIALOG = 'waterfallDialog';
 const TEXT_PROMPT = 'textPrompt';
@@ -13,7 +16,7 @@ class RegistroUsuarioDialog extends ComponentDialog {
 
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
             this.unameStep.bind(this),
-            this.firstNameStep.bind(this),
+             this.firstNameStep.bind(this),
             this.lastNameStep.bind(this),
             this.emailStep.bind(this),
             this.celphoneStep.bind(this),
@@ -23,7 +26,7 @@ class RegistroUsuarioDialog extends ComponentDialog {
         ]))
             .addDialog(new TextPrompt(TEXT_PROMPT))
             .addDialog(new TextPrompt(EMAIL_TEXT_PROMPT, this.emailPromptValidator))
-            .addDialog(new NumberPrompt(NUMBER_PROMPT))
+            .addDialog(new NumberPrompt(NUMBER_PROMPT, this.cellphonePromptValidator))
             .addDialog(new DateTimePrompt(DATE_TIME_PROMPT))
             .addDialog(new ChoicePrompt(CHOICE_PROMPT));
 
@@ -69,8 +72,9 @@ class RegistroUsuarioDialog extends ComponentDialog {
 
         userData.email = stepContext.result;
 
+        const retryPromptText = `Ingresar número de celular válido.`
         const numberText = 'Ingresar número de celular:';
-        return await stepContext.prompt(NUMBER_PROMPT, { prompt: numberText });
+        return await stepContext.prompt(NUMBER_PROMPT, { prompt: numberText, retryPrompt: retryPromptText });
     }
 
     async dateBirthStep(stepContext) {
@@ -98,16 +102,26 @@ class RegistroUsuarioDialog extends ComponentDialog {
     async finalStep(stepContext) {
         const userData = stepContext.options;
 
-        if (stepContext.result.value === 'Si') {   
-            const message = `Se ingresaron los datos:
-            \n**User ID:** ${ userData.uname }
-            \n**Nombres:** ${ userData.firstName }
-            \n**Apellidos:** ${ userData.lastName }
-            \n**Email:** ${ userData.email }
-            \n**Celular:** ${ userData.celphone }
-            \n**Fecha de nacimiento:** ${ userData.dateBirth[0].value }
-            \n**Fecha de nacimiento JSON:** ${ userData.dateBirthJSON }`;
-            await stepContext.context.sendActivity(message);
+        if (stepContext.result.value === 'Si') {
+            let odataConnection = new OdataConnection();
+            let odataResult = await odataConnection.createUser(userData);
+
+            switch(odataResult.type){
+                case 'S':
+                    const message = `Se ingresaron los datos:
+                    \n**User ID:** ${ userData.uname }
+                    \n**Nombres:** ${ userData.firstName }
+                    \n**Apellidos:** ${ userData.lastName }
+                    \n**Email:** ${ userData.email }
+                    \n**Celular:** ${ userData.celphone }
+                    \n**Fecha de nacimiento:** ${ userData.dateBirth[0].value }`;
+                    await stepContext.context.sendActivity(message);
+                    break;
+                case 'E':         
+                    let card = new Cards();
+                    await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await card.errorMessage(odataResult.message))]});
+                    break;
+            }
         }
 
         return await stepContext.endDialog();
@@ -130,7 +144,11 @@ class RegistroUsuarioDialog extends ComponentDialog {
     static validateEmail(email) {
         const re = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))){2,6}$/i;
         return re.test(email);
-    } 
+    }
+
+    async cellphonePromptValidator(promptContext){
+        return promptContext.recognized.succeeded && promptContext.recognized.value.toString().length == 9
+    }
 }
 
 module.exports.RegistroUsuarioDialog = RegistroUsuarioDialog;
