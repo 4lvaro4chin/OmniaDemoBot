@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/23b7b2b7-3335-4f6e-80cc-dcc5fe005d93/resourceGroups/ChatbotOmniaDemoBot/providers/Microsoft.Web/sites/OmniaDemoBot",
+    "appService.deploySubpath": "."
+}
