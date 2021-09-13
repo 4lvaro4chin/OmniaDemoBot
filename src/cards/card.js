@@ -699,7 +699,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "$199,339.995",
+                                            "text": `${data.incoterm.usd_cif}`,
                                             "wrap": true
                                         }
                                     ],
@@ -732,7 +732,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "$198,872.027",
+                                            "text": `${data.incoterm.fob}`,
                                             "wrap": true
                                         }
                                     ],
@@ -765,7 +765,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "$287.928",
+                                            "text": `${data.incoterm.flete}`,
                                             "wrap": true
                                         }
                                     ],
@@ -798,7 +798,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "$180.040",
+                                            "text": `${data.incoterm.seguro}`,
                                             "wrap": true
                                         }
                                     ],
