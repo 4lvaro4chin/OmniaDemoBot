@@ -24,14 +24,13 @@ class DesbloqueoSapDialog extends ComponentDialog {
     async systemChoiceStep(stepContext) {
         const systemData = stepContext.options;
 
-
         let msteamsConnection = new MsteamsConnection();
         var msteamsToken = await msteamsConnection.getAzureToken();
         var msteamsEmail = await msteamsConnection.getAzureEmail(msteamsToken,stepContext.context.activity.conversation.id);   
 
         systemData.Useralias = msteamsEmail;
 
-        //systemData.Useralias = "aachin@omniasolution.com";
+        systemData.Useralias = "aachin@omniasolution.com";
 
         let odataConnection = new OdataConnection();
         let odataResult = await odataConnection.getSystemSet();

@@ -29,7 +29,7 @@ class ReinicioSapDialog extends ComponentDialog {
 
         systemData.Useralias = msteamsEmail;
 
-        //systemData.Useralias = 'aachin@omniasolution.com';
+        systemData.Useralias = 'aachin@omniasolution.com';
 
         let odataConnection = new OdataConnection();
         let odataResult = await odataConnection.getSystemSet();
