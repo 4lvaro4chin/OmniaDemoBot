@@ -1,8 +1,9 @@
-const { ComponentDialog, WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
+const { WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
 const { ReinicioSapDialog } = require("./reinicioSapDialog");
 const { DesbloqueoSapDialog } = require("./desbloqueoSapDialog");
 const { RegistroUsuarioDialog } = require("./registroUsuarioDialog");
 const { MenuDrawbackDialog } = require("./menuDrawbackDialog");
+const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
 const REINICIO_SAP_DIALOG = 'reinicioSapDialog';
@@ -11,7 +12,7 @@ const REGISTRO_USUARIO_DIALOG = 'registroUsuarioDialog';
 const MENU_DRAWBACK_DIALOG = 'menuDrawbackDialog';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class MenuInicialDialog extends ComponentDialog {
+class MenuInicialDialog extends HelperDialog {
     constructor(dialogId){
         super(dialogId);
 

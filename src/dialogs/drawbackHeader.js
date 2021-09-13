@@ -1,12 +1,13 @@
-const { ComponentDialog, WaterfallDialog, TextPrompt } = require("botbuilder-dialogs");
+const { WaterfallDialog, TextPrompt } = require("botbuilder-dialogs");
 const { CardFactory } = require("botbuilder");
 const { Cards } = require('../cards/card'); 
 const { AwsConnection } = require("../aws/awsConnection");
+const { HelperDialog } = require("./helperDialog");
 
 const TEXT_PROMPT = 'textPrompt';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class DrawbackHeader extends ComponentDialog {
+class DrawbackHeader extends HelperDialog {
     constructor(dialogId) {
         super(dialogId);
 

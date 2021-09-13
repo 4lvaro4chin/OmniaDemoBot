@@ -576,13 +576,6 @@ class Cards {
                         "id": "actionConsultar"
                     },
                     "style": "positive"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "Cancelar",
-                    "data": {
-                        "id": "actionCancel"
-                    }
                 }
             ]
         };

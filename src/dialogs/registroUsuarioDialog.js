@@ -1,7 +1,8 @@
-const { ComponentDialog, WaterfallDialog, TextPrompt, NumberPrompt, DateTimePrompt, ChoicePrompt, ChoiceFactory, ListStyle } = require("botbuilder-dialogs");
+const { WaterfallDialog, TextPrompt, NumberPrompt, DateTimePrompt, ChoicePrompt, ChoiceFactory, ListStyle } = require("botbuilder-dialogs");
 const { CardFactory } = require("botbuilder");
 const { OdataConnection } = require('../odata/odataConnection');
 const { Cards } = require('../cards/card');
+const { HelperDialog } = require("./helperDialog");
 
 const WATERFALL_DIALOG = 'waterfallDialog';
 const TEXT_PROMPT = 'textPrompt';
@@ -10,7 +11,7 @@ const NUMBER_PROMPT = 'numberPrompt';
 const DATE_TIME_PROMPT = 'dateTimePrompt';
 const CHOICE_PROMPT = 'choicePrompt';
 
-class RegistroUsuarioDialog extends ComponentDialog {
+class RegistroUsuarioDialog extends HelperDialog {
     constructor(dialogId) {
         super(dialogId)
 

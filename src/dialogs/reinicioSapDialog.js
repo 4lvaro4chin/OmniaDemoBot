@@ -1,13 +1,14 @@
-const { ComponentDialog, WaterfallDialog, ChoicePrompt, ChoiceFactory, ListStyle } = require("botbuilder-dialogs");
+const { WaterfallDialog, ChoicePrompt, ChoiceFactory, ListStyle } = require("botbuilder-dialogs");
 const { CardFactory } = require("botbuilder");
 const { Cards } = require('../cards/card');
 const { OdataConnection } = require('../odata/odataConnection');
 const { MsteamsConnection } = require('../msteams/msteamsConnection');
+const { HelperDialog } = require("./helperDialog");
 
 const CHOICE_PROMPT = 'choicePrompt';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class ReinicioSapDialog extends ComponentDialog {
+class ReinicioSapDialog extends HelperDialog {
     constructor(dialogId) {
         super(dialogId);
 

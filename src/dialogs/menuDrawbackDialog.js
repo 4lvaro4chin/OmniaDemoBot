@@ -1,11 +1,12 @@
-const { ComponentDialog, WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
+const { WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
 const { DrawbackHeader } = require('./drawbackHeader');
+const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
 const DRAWBACK_HEADER = 'drawbackHeader';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class MenuDrawbackDialog extends ComponentDialog {
+class MenuDrawbackDialog extends HelperDialog {
     constructor(dialogId) {
         super(dialogId);
 
