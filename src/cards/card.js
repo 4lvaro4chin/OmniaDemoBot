@@ -1509,7 +1509,7 @@ class Cards {
                             "type": "FactSet",
                             "facts": [
                                 {
-                                    "title": "**Cantidad de Series)**",
+                                    "title": "**Cantidad de Series**",
                                     "value": `${data.parameters.series}`
                                 }
                             ]
