@@ -910,7 +910,124 @@ class Cards {
                             ]
                         }
                     ]
-                }
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "style": "emphasis",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**TRANSPORTE**",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Empresa Transporte**",
+                                    "value": `${data.detail.transport.code_unit_transport}`
+                                },
+                                {
+                                    "title": "**Nº Manifiesto**",
+                                    "value": `${data.detail.transport.manifest}`
+                                },
+                                {
+                                    "title": "**Vía Transporte**",
+                                    "value": `${data.detail.transport.way_transport}`
+                                },
+                                {
+                                    "title": "**Fecha Termino Desc/Embar**",
+                                    "value": `${data.detail.transport.date_end_landing}`
+                                },
+                                {
+                                    "title": "**Empresa Transporte (T/R)**",
+                                    "value": `${data.detail.transport.code_transport_company}`
+                                },
+                                {
+                                    "title": "**Unidad Transporte (T/R)**",
+                                    "value": `${data.detail.transport.unit_transport}`
+                                },
+                                {
+                                    "title": "**Aduana D/S**",
+                                    "value": `${data.detail.transport.code_customs}`
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "style": "emphasis",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**ALMACEN**",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Depósito Temporal**",
+                                    "value": `${data.detail.warehouse.warehouse_temporal}`
+                                },
+                                {
+                                    "title": "**Depósito A.Autorizado**",
+                                    "value": `${data.detail.warehouse.warehouse_official}`
+                                },
+                                {
+                                    "title": "**Plazo Solicitado**",
+                                    "value": `${data.detail.warehouse.term}`
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "style": "emphasis",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**TRANSACCION**",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Entidad Financiera**",
+                                    "value": `${data.detail.transaction.code_finantial}`
+                                },
+                                {
+                                    "title": "**Modalidad**",
+                                    "value": `${data.detail.transaction.mode_finantial}`
+                                }
+                            ]
+                        }
+                    ]
+                },
             ]
         }
 
