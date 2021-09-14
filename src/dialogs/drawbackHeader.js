@@ -69,6 +69,7 @@ class DrawbackHeader extends HelperDialog {
     }
 
     async promptValidator(promptContext){
+        return true;
         const activity = promptContext.context._activity;
         return activity.type === 'message' && activity.channelData.postBack;
     }
