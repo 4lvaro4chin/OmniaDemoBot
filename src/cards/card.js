@@ -781,6 +781,7 @@ class Cards {
             "body": [
                 {
                     "type": "Container",
+                    "style": "emphasis",
                     "items": [
                         {
                             "type": "ColumnSet",
@@ -840,6 +841,7 @@ class Cards {
                 {
                     "type": "Container",
                     "separator": true,
+                    "style": "emphasis",
                     "items": [
                         {
                             "type": "TextBlock",
@@ -877,6 +879,7 @@ class Cards {
                 {
                     "type": "Container",
                     "separator": true,
+                    "style": "emphasis",
                     "items": [
                         {
                             "type": "TextBlock",
