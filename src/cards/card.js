@@ -310,7 +310,195 @@ class Cards {
         return json;
     }    
 
-    async formDrawbackHeader() {
+    async formDuaHeader() {
+        const json = {
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "type": "AdaptiveCard",
+            "version": "1.3",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": " Consulta DUA",
+                    "horizontalAlignment": "Center",
+                    "wrap": true
+                },
+                {
+                    "type": "Input.ChoiceSet",
+                    "id": "inputAduana",
+                    "label": "Aduana",
+                    "isRequired": true,
+                    "errorMessage": "Es necesario indicar un valor.",
+                    "value": "118",
+                    "choices": [
+                        {
+                            "title": "019-TUMBES",
+                            "value": "019"
+                        },
+                        {
+                            "title": "028-TALARA",
+                            "value": "028"
+                        },
+                        {
+                            "title": "037-SULLANA",
+                            "value": "037"
+                        },
+                        {
+                            "title": "046-PAITA",
+                            "value": "046"
+                        },
+                        {
+                            "title": "055-CHICLAYO",
+                            "value": "055"
+                        },
+                        {
+                            "title": "064-ETEN",
+                            "value": "064"
+                        },
+                        {
+                            "title": "073-PACASMAYO",
+                            "value": "073"
+                        },
+                        {
+                            "title": "082-SALAVERRY",
+                            "value": "082"
+                        },
+                        {
+                            "title": "091-CHIMBOTE",
+                            "value": "091"
+                        },
+                        {
+                            "title": "109-HUACHO",
+                            "value": "109"
+                        },
+                        {
+                            "title": "118-MARITIMA DEL CALLO",
+                            "value": "118"
+                        },
+                        {
+                            "title": "127-PISCO",
+                            "value": "127"
+                        },
+                        {
+                            "title": "136-SAN JUAN",
+                            "value": "136"
+                        },
+                        {
+                            "title": "145-MOLLENDO - MATARANI",
+                            "value": "145"
+                        },
+                        {
+                            "title": "154-AREQUIPA",
+                            "value": "154"
+                        },
+                        {
+                            "title": "163-ILO",
+                            "value": "163"
+                        },
+                        {
+                            "title": "172-TACNA",
+                            "value": "172"
+                        },
+                        {
+                            "title": "181-PUNO",
+                            "value": "181"
+                        },
+                        {
+                            "title": "262-DESAGUADERO",
+                            "value": "262"
+                        },
+                        {
+                            "title": "190-CUZCO",
+                            "value": "190"
+                        },
+                        {
+                            "title": "217-PUCALLPA",
+                            "value": "217"
+                        },
+                        {
+                            "title": "253-PUESTO DE CONTROL DE TARAPOTO",
+                            "value": "253"
+                        },
+                        {
+                            "title": "262-DESAGUADERO",
+                            "value": "262"
+                        },
+                        {
+                            "title": "226-IQUITOS",
+                            "value": "226"
+                        },
+                        {
+                            "title": "235-AEREA DEL CALLAO",
+                            "value": "235"
+                        },
+                        {
+                            "title": "244-POSTAL DE LIMA",
+                            "value": "244"
+                        },
+                        {
+                            "title": "271-TARAPOTO",
+                            "value": "271"
+                        },
+                        {
+                            "title": "280-PUERTO MALDONADO",
+                            "value": "280"
+                        },
+                        {
+                            "title": "299-LA TINA",
+                            "value": "299"
+                        },
+                        {
+                            "title": "901-OFICINA POSTAL DE LINCE",
+                            "value": "901"
+                        },
+                        {
+                            "title": "910-ADUANA POSTAL DE AREQUIPA",
+                            "value": "910"
+                        },
+                        {
+                            "title": "974-ALMACEN SANTA ANITA",
+                            "value": "974"
+                        },
+                    ]
+                },
+                {
+                    "type": "Input.Text",
+                    "style": "text",
+                    "id": "inputYear",
+                    "label": "Año",
+                    "isRequired": true,
+                    "errorMessage": "Es necesario indicar un valor.",
+                    "maxLength": 4,
+                    "value": "2020"
+                },
+                {
+                    "type": "Input.Text",
+                    "style": "text",
+                    "id": "inputDUA",
+                    "label": "Número de Declaración",
+                    "isRequired": true,
+                    "errorMessage": "Es necesario indicar un valor.",
+                    "maxLength": 6,
+                    "value": "165629"
+                }
+            ],
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Consultar",
+                    "data": {
+                        "id": "actionConsultar"
+                    },
+                    "style": "positive"
+                }
+            ]
+        };
+
+        return json;
+    }
+
+    async formDuaHeader2() {
         const json = {
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",
@@ -585,7 +773,376 @@ class Cards {
         return json;
     }
 
-    async dataDrawbackHeader(data) {
+    async dataDUAHeader(data) {
+        const json = {
+            "type": "AdaptiveCard",
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.3",
+            "body": [
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**DECLARACIÓN ÚNICA DE ADUANAS**",
+                                            "wrap": true,
+                                            "size": "Large",
+                                            "horizontalAlignment": "Center"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Aduana**",
+                                    "value": `${data.detail.code} - ${data.detail.customs}`
+                                },
+                                {
+                                    "title": "**Nº Orden**",
+                                    "value": `${data.detail.order_number}`
+                                },
+                                {
+                                    "title": "**Destinación**",
+                                    "value": `${data.detail.destination}`
+                                },
+                                {
+                                    "title": "**Modalidad**",
+                                    "value": `${data.detail.modality}`
+                                },
+                                {
+                                    "title": "**Tipo Despacho**",
+                                    "value": `${data.detail.office_type}`
+                                },
+                                {
+                                    "title": "**Nº DUA Prov.**",
+                                    "value": `${data.detail.dua_number}`
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**IDENTIFICACIÓN**",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Importador/Exportador**",
+                                    "value": `${data.detail.identification.importer_exporter}`
+                                },
+                                {
+                                    "title": "**Código y Documento de Identificación**",
+                                    "value": `${data.detail.identification.code_document_number}`
+                                },
+                                {
+                                    "title": "**Dirección de Importador/Exportador**",
+                                    "value": `${data.detail.identification.address}`
+                                },
+                                {
+                                    "title": "**Cod.Ubi.Geo.**"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**REGISTRO DE ADUANA**",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Nº Declaración**",
+                                    "value": `${data.detail.customs_record.declaration_number}`
+                                },
+                                {
+                                    "title": "**Fecha Numeración**",
+                                    "value": `${data.detail.customs_record.date_number}`
+                                },
+                                {
+                                    "title": "**Sujeto a**",
+                                    "value": `${data.detail.customs_record.status}`
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        return json;
+    }
+
+    async dataDuaHeader(data) {
+        const json = {
+            "type": "AdaptiveCard",
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.3",
+            "body": [
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `**${data.principal}**`,
+                                            "wrap": true,
+                                            "size": "Large"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "**Número de Declaración**",
+                            "value": `${data.declaration_number}`
+                        },
+                        {
+                            "title": "**Fecha de Numeración**",
+                            "value": `${data.date_number}`
+                        },
+                        {
+                            "title": "**Modalidad de Despacho Aduanero**",
+                            "value": `${data.customs_modality}`
+                        },
+                        {
+                            "title": "**Declarante**",
+                            "value": `${data.declarant}`
+                        }
+                    ],
+                    "separator": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Incoterm**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "height": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Monto**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "separator": true,
+                    "style": "emphasis",
+                    "bleed": true
+                },
+                {
+                    "type": "Container",
+                    "bleed": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "USD CIF",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.incoterm.usd_cif}`,
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "style": "default"
+                },
+                {
+                    "type": "Container",
+                    "bleed": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "FOB",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.incoterm.fob}`,
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "style": "default"
+                },
+                {
+                    "type": "Container",
+                    "bleed": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Flete",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.incoterm.flete}`,
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "style": "default"
+                },
+                {
+                    "type": "Container",
+                    "bleed": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Seguro",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.incoterm.seguro}`,
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "style": "default"
+                }
+            ]
+        };
+
+        return json;
+    }
+
+    async dataDrawbackHeader2(data) {
         const json = {
             "type": "AdaptiveCard",
             "body": [

@@ -7,7 +7,7 @@ const { HelperDialog } = require("./helperDialog");
 const TEXT_PROMPT = 'textPrompt';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class DrawbackHeader extends HelperDialog {
+class DuaHeader extends HelperDialog {
     constructor(dialogId) {
         super(dialogId);
 
@@ -25,7 +25,7 @@ class DrawbackHeader extends HelperDialog {
         const dialogData = stepContext.options;
 
         let card = new Cards();
-        await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await card.formDrawbackHeader())]});
+        await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await card.formDuaHeader())]});
 
         const promptText = 'Esperando que ingrese los datos.';
         return await stepContext.prompt(TEXT_PROMPT, { prompt: promptText });
@@ -35,21 +35,18 @@ class DrawbackHeader extends HelperDialog {
         const dialogData = stepContext.options;
 
         // get adaptive card input value
-        //console.log(stepContext.context.activity.value);
-
-        await stepContext.context.sendActivity(stepContext.context.activity.value.id);
+        //console.log(JSON.stringify(stepContext.context.activity.value));
 
         switch(stepContext.context.activity.value.id) {            
             case 'actionConsultar':
                 let awsConnection = new AwsConnection;
-                let awsResult = await awsConnection.getDamHeader(stepContext.context.activity.value);
-
-                await stepContext.context.sendActivity(awsResult.type);
+                let awsResult = await awsConnection.getDuaHeader(stepContext.context.activity.value);
 
                 switch(awsResult.type){
                     case 'S':
+                        console.log(awsResult);
                         let cardSuccess = new Cards();
-                        await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await cardSuccess.dataDrawbackHeader(awsResult.response.body))]});
+                        await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await cardSuccess.dataDUAHeader(awsResult.response.body))]});
                         break;
                     default:
                         let cardError = new Cards();
@@ -69,10 +66,9 @@ class DrawbackHeader extends HelperDialog {
     }
 
     async promptValidator(promptContext){
-        return true;
         const activity = promptContext.context._activity;
-        return activity.type === 'message' && activity.channelData.postBack;
+        return activity.type === 'message' //&& activity.channelData.postBack;
     }
 }
 
-module.exports.DrawbackHeader = DrawbackHeader;
+module.exports.DuaHeader = DuaHeader;

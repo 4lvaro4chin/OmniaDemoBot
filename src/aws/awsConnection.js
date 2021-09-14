@@ -5,6 +5,44 @@ class AwsConnection {
 
     }
 
+    async getDuaHeader(dataForm){
+        let host_url = process.env.AwsDuaHeader;
+
+        let bodyJSON = {
+            "user_id" : `20475835604`,
+            "aduana" : `${ dataForm.inputAduana }`,
+            "year" : `${ dataForm.inputYear }`,
+            "number" : `${ dataForm.inputDUA }`
+        };
+
+        const resultAws = await axios.post(host_url, bodyJSON, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((response) => { 
+            console.log(response);
+            var jsonError = {
+                'type' : 'S',
+                'message' : response.data.statusMessage,
+                'response': response.data
+            }
+            return jsonError;
+        })
+        .catch((error) => {
+            console.log(error)
+            var jsonError = {
+                'type' : 'E',
+                'message' : 'Error en la ejecución de la API para consulta de DUA.',
+                'error': error
+            }
+            return jsonError;
+        });
+
+        return resultAws;  
+
+    }
+
     async getDamHeader(dataForm) {
         let host_url = process.env.AwsDrawbackHeader;
 

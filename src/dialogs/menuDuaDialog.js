@@ -1,12 +1,12 @@
 const { WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
-const { DrawbackHeader } = require('./drawbackHeader');
+const { DuaHeader } = require('./DuaHeader');
 const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
-const DRAWBACK_HEADER = 'drawbackHeader';
+const DUA_HEADER = 'duaHeader';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class MenuDrawbackDialog extends HelperDialog {
+class MenuDuaDialog extends HelperDialog {
     constructor(dialogId) {
         super(dialogId);
 
@@ -16,7 +16,7 @@ class MenuDrawbackDialog extends HelperDialog {
             this.finalStep.bind(this)
         ]))
             .addDialog(new NumberPrompt(NUMBER_PROMPT, this.optionPromptValidator))
-            .addDialog(new DrawbackHeader(DRAWBACK_HEADER));
+            .addDialog(new DuaHeader(DUA_HEADER));
 
         this.initialDialogId = WATERFALL_DIALOG; 
     }
@@ -25,9 +25,8 @@ class MenuDrawbackDialog extends HelperDialog {
         const dialogData = stepContext.options;
 
         const promptText = `Elige una de las opciones:
-        \n**1.** Ver datos de cabecera
-        \n**2.** Ver detalle
-        \n**3.** Ver series
+        \n**1.** Consultar DUA
+        \n**2.** Consultar Series
         \n Ingresa el número.`;
 
         const retryPromptText = `Ingresar una opción válida.`
@@ -42,12 +41,10 @@ class MenuDrawbackDialog extends HelperDialog {
 
         switch(dialogData.option.toString()) {
             case '1':
-                console.log('Ver Drawback Header');
-                return await stepContext.beginDialog(DRAWBACK_HEADER);
+                console.log('Consultar DUA');
+                return await stepContext.beginDialog(DUA_HEADER);
             case '2':
-                console.log('Ver Drawback Detail');
-            case '3':
-                console.log('Ver Drawback Series');
+                console.log('Consultar Series');
             default:
                 return await stepContext.endDialog();
         }
@@ -59,8 +56,8 @@ class MenuDrawbackDialog extends HelperDialog {
     }
 
     async optionPromptValidator(promptContext) {
-        return promptContext.recognized.succeeded && promptContext.recognized.value > 0 && promptContext.recognized.value < 4;
+        return promptContext.recognized.succeeded && promptContext.recognized.value > 0 && promptContext.recognized.value < 3;
     }
 }
 
-module.exports.MenuDrawbackDialog = MenuDrawbackDialog;
+module.exports.MenuDuaDialog = MenuDuaDialog;

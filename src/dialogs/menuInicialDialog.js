@@ -2,14 +2,14 @@ const { WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
 const { ReinicioSapDialog } = require("./reinicioSapDialog");
 const { DesbloqueoSapDialog } = require("./desbloqueoSapDialog");
 const { RegistroUsuarioDialog } = require("./registroUsuarioDialog");
-const { MenuDrawbackDialog } = require("./menuDrawbackDialog");
+const { MenuDuaDialog } = require("./menuDuaDialog");
 const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
 const REINICIO_SAP_DIALOG = 'reinicioSapDialog';
 const DESBLOQUEO_SAP_DIALOG = 'desbloqueoSapDialog';
 const REGISTRO_USUARIO_DIALOG = 'registroUsuarioDialog';
-const MENU_DRAWBACK_DIALOG = 'menuDrawbackDialog';
+const MENU_DUA_DIALOG = 'menuDuaDialog';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
 class MenuInicialDialog extends HelperDialog {
@@ -25,7 +25,7 @@ class MenuInicialDialog extends HelperDialog {
             .addDialog(new DesbloqueoSapDialog(DESBLOQUEO_SAP_DIALOG))
             .addDialog(new ReinicioSapDialog(REINICIO_SAP_DIALOG))
             .addDialog(new RegistroUsuarioDialog(REGISTRO_USUARIO_DIALOG))
-            .addDialog(new MenuDrawbackDialog(MENU_DRAWBACK_DIALOG));
+            .addDialog(new MenuDuaDialog(MENU_DUA_DIALOG));
 
         this.initialDialogId = WATERFALL_DIALOG; 
     }
@@ -37,7 +37,7 @@ class MenuInicialDialog extends HelperDialog {
         \n**1.** Desbloqueo de usuario SAP
         \n**2.** Reinicio de contraseña SAP
         \n**3.** Registrar usuario
-        \n**4.** Consultas Drawback
+        \n**4.** Consultas DUA (SUNAT)
         \n Ingresa el número.`;
 
         const retryPromptText = `Ingresar una opción válida.`
@@ -61,8 +61,8 @@ class MenuInicialDialog extends HelperDialog {
                 console.log('Registrar Usuario');
                 return await stepContext.beginDialog(REGISTRO_USUARIO_DIALOG);
             case '4':
-                console.log('Consultas Drawback');
-                return await stepContext.beginDialog(MENU_DRAWBACK_DIALOG);
+                console.log('Consultas DUA (SUNAT)');
+                return await stepContext.beginDialog(MENU_DUA_DIALOG);
             default:
                 return await stepContext.endDialog();
         }
