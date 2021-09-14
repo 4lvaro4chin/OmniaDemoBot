@@ -470,7 +470,7 @@ class Cards {
                     "isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
                     "maxLength": 4,
-                    "value": "2020"
+                    "value": ""
                 },
                 {
                     "type": "Input.Text",
@@ -480,7 +480,7 @@ class Cards {
                     "isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
                     "maxLength": 6,
-                    "value": "165629"
+                    "value": ""
                 }
             ],
             "actions": [
