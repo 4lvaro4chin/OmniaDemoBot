@@ -1454,7 +1454,7 @@ class Cards {
                             ]
                         }
                     ]
-                }
+                },
                 {
                     "type": "Container",
                     "items": [
