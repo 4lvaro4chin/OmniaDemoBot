@@ -1,5 +1,5 @@
 const { WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
-const { DuaHeader } = require('./DuaHeader');
+const { DuaHeader } = require('./duaHeader');
 const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
