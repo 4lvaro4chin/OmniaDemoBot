@@ -1027,7 +1027,8 @@ class Cards {
                             ]
                         }
                     ]
-                },{
+                },
+                {
                     "type": "Container",
                     "items": [
                         {
@@ -1267,6 +1268,249 @@ class Cards {
                                 {
                                     "title": "**Declarante (Tipo - Nro. de documento - Razón Social)**",
                                     "value": `${data.detail.bidder.name}`
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**OTROS DATOS DILIGENCIA**",
+                            "wrap": true
+                        }
+                    ],
+                    "separator": true,
+                    "style": "emphasis"
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Concepto**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Cantidad**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Total Peso Neto",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.values.net_weight}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "separator": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Total Peso Bruto",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.values.gross_weight}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Total Bultos",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.values.total_packages}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Total U.Físicas",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.values.total_unit_f}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Total U.Comercial",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.values.total_unit_c}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**OTROS DATOS**",
+                            "wrap": true
+                        }
+                    ],
+                    "separator": true,
+                    "style": "emphasis"
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Cantidad de Series)**",
+                                    "value": `${data.parameters.series}`
                                 }
                             ]
                         }
