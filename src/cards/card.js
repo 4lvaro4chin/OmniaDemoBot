@@ -470,7 +470,7 @@ class Cards {
                     "isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
                     "maxLength": 4,
-                    "value": "2021"
+                    "value": "2020"
                 },
                 {
                     "type": "Input.ChoiceSet",
@@ -556,7 +556,8 @@ class Cards {
                     "label": "Dígito",
                     "isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
-                    "maxLength": 1
+                    "maxLength": 1,
+                    "value": "1"
                 },
                 {
                     "type": "Input.Text",
@@ -565,7 +566,8 @@ class Cards {
                     "label": "Nº Reliq/Cuota",
                     "isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
-                    "maxLength": 2
+                    "maxLength": 2,
+                    "value": "00"
                 },
             ],
             "actions": [

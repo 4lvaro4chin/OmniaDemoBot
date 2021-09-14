@@ -37,10 +37,14 @@ class DrawbackHeader extends HelperDialog {
         // get adaptive card input value
         //console.log(stepContext.context.activity.value);
 
+        await stepContext.context.sendActivity(stepContext.context.activity.value.id);
+
         switch(stepContext.context.activity.value.id) {            
             case 'actionConsultar':
                 let awsConnection = new AwsConnection;
                 let awsResult = await awsConnection.getDamHeader(stepContext.context.activity.value);
+
+                await stepContext.context.sendActivity(awsResult.type);
 
                 switch(awsResult.type){
                     case 'S':
