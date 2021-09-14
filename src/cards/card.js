@@ -1027,6 +1027,250 @@ class Cards {
                             ]
                         }
                     ]
+                },{
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**VALOR ADUANA**",
+                            "wrap": true
+                        }
+                    ],
+                    "separator": true,
+                    "style": "emphasis"
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Concepto**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Importe**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "FOB/Valor Clausula venta",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.customs_values.fob}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "separator": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Flete/Comisión Exterior",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.customs_values.charter}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Seguro/Otros Gastos Deducibles",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.customs_values.insurance}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Total Ajustes",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.customs_values.total}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Valor Aduana/ Valor Neto Entrega",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": `${data.detail.customs_values.value}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right",
+                                            "weight": "Bolder"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "separator": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**DECLARANTE**",
+                            "wrap": true
+                        }
+                    ],
+                    "separator": true,
+                    "style": "emphasis"
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "**Declarante (Tipo - Nro. de documento - Razón Social)**",
+                                    "value": `${data.detail.bidder.name}`
+                                }
+                            ]
+                        }
+                    ]
                 },
             ]
         }
