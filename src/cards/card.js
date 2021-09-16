@@ -1748,7 +1748,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "value": `${data.merchandise.fob_usd}`,
+                                            "text": `${data.merchandise.fob_usd}`,
                                             "wrap": true,
                                             "horizontalAlignment": "Right"
                                         }
@@ -1783,7 +1783,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "value": `${data.merchandise.flete}`,
+                                            "text": `${data.merchandise.flete}`,
                                             "wrap": true,
                                             "horizontalAlignment": "Right"
                                         }
@@ -1817,7 +1817,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "value": `${data.merchandise.insurance_usd}`,
+                                            "text": `${data.merchandise.insurance_usd}`,
                                             "wrap": true,
                                             "horizontalAlignment": "Right"
                                         }
@@ -1851,7 +1851,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "value": `${data.merchandise.fixed_usd}`,
+                                            "text": `${data.merchandise.fixed_usd}`,
                                             "wrap": true,
                                             "horizontalAlignment": "Right"
                                         }
@@ -1885,7 +1885,7 @@ class Cards {
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "value": `**${data.merchandise.customs_value}**`,
+                                            "text": `**${data.merchandise.customs_value}**`,
                                             "wrap": true,
                                             "horizontalAlignment": "Right"
                                         }
@@ -1896,6 +1896,48 @@ class Cards {
                     ],
                     "separator": true
                 },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "**Descripción Mercancí­as**",
+                            "wrap": true
+                        }
+                    ],
+                    "style": "emphasis",
+                    "separator": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "1. PERFORADORA HC-28 DRIFTER,MONTABERT,S/M,",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "2. FUNCION: ES PARTE DE LA MAQUINA DE PERFORACION MINERA-SOLIDO DE ACERO,QUE SE ACCIONA CON",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "3. SISTEMA HIDRAULICO PROPORCIONADO POR LA MAQUINA DE PERFORACION MINERA, ESTE MUEVE EL SHANK",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "4. HACIENDO QUE DE GOLPES A LA ROCA Y LA PERFORE,COMO HAY MUCHA PRESION, ESTA FUERZA QUE SE",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "5. ORIGINA ES AMORTIZADO CON ACUMULADORES DE NITROGENO.S/N:H028A00282 AL H028A00285,Cod.Produ",
+                            "wrap": true
+                        }
+                    ]
+                }
             ]
         };
 
