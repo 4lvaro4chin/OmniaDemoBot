@@ -1613,7 +1613,71 @@ class Cards {
                                 {
                                     "title": "**Infor. Verificación / Cod.Exoneración**",
                                     "value": `${data.merchandise.exoneration}`
-                                }
+                                },
+                                {
+                                    "title": "**Cantidad Bultos**",
+                                    "value": `${data.merchandise.quantity_package}`
+                                },
+                                {
+                                    "title": "**Clase**",
+                                    "value": `${data.merchandise.class}`
+                                },
+                                {
+                                    "title": "**Peso Neto Kilos**",
+                                    "value": `${data.merchandise.net_weight}`
+                                },
+                                {
+                                    "title": "**Peso Bruto Kilos**",
+                                    "value": `${data.merchandise.gross_weight}`
+                                },
+                                {
+                                    "title": "**Cantidad Unidad Física**",
+                                    "value": `${data.merchandise.quantity_material_unit}`
+                                },
+                                {
+                                    "title": "**Cantidad Unidad Equiv./Prod. Unidad**",
+                                    "value": `${data.merchandise.quantity_equal_unit}`
+                                },
+                                {
+                                    "title": "**Item CIP**",
+                                    "value": `${data.merchandise.item_cip}`
+                                },
+                                {
+                                    "title": "**Subpartida Nacional DV**",
+                                    "value": `${data.merchandise.subheading_local_dv}`
+                                },
+                                {
+                                    "title": "**Tipo**",
+                                    "value": `${data.merchandise.type}`
+                                },
+                                {
+                                    "title": "**Subpartida Naladisa/Nabandina DV**",
+                                    "value": `${data.merchandise.subheading_andina_dv}`
+                                },
+                                {
+                                    "title": "**TM**",
+                                    "value": `${data.merchandise.tm}`
+                                },
+                                {
+                                    "title": "**TPI**",
+                                    "value": `${data.merchandise.tpi}`
+                                },
+                                {
+                                    "title": "**TPN**",
+                                    "value": `${data.merchandise.tpn}`
+                                },
+                                {
+                                    "title": "**Cod. Lib.**",
+                                    "value": `${data.merchandise.cod_lib}`
+                                },
+                                {
+                                    "title": "**Paí­s Origen**",
+                                    "value": `${data.merchandise.country_from}`
+                                },
+                                {
+                                    "title": "**País Adq/Dest.**",
+                                    "value": `${data.merchandise.country_adq}`
+                                },
                             ]
                         }
                     ],
