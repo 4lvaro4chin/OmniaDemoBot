@@ -21,7 +21,6 @@ class AwsConnection {
             }
         })
         .then((response) => { 
-            console.log(response);
             var jsonError = {
                 'type' : 'S',
                 'message' : response.data.statusMessage,
@@ -43,18 +42,34 @@ class AwsConnection {
 
     }
 
-    async getDamHeader(dataForm) {
-        let host_url = process.env.AwsDrawbackHeader;
+    async getDuaDetail(index, data){
+        let host_url = process.env.AwsDuaDetail;
 
         let bodyJSON = {
-            "user_id" : `20475835604`,
-            "customs" : `${ dataForm.inputAduana }`,
-            "year" : `${ dataForm.inputAnho }`,
-            "regimen" : `${ dataForm.inputRegimen }`,
-            "declaration" : `${ dataForm.inputDAM }`,
-            "type_document" : `${ dataForm.inputTipoDoc }`,
-            "digit" : `${ dataForm.inputDigito }`,
-            "fee" : `${ dataForm.inputNroReliq }`
+            "user_id": "80388508",
+            "serie": `${index}ACTIVO`,
+            "codaduana": `${data.codaduana}`,
+            "numecorre": `${data.numecorre}`,
+            "anoprese": `${data.anoprese}`,
+            "n": `${data.n}`,
+            "regimen": `${data.regimen}`,
+            "fini": `${data.fini}`,
+            "fechingsi": `${data.fechingsi}`,
+            "ordemb": `${data.ordemb}`,
+            "tipodocdecla": `${data.tipodocdecla}`,
+            "docdecla": `${data.docdecla}`,
+            "codubigeo": `${data.codubigeo}`,
+            "ndcl": `${data.ndcl}`,
+            "mcaduregpre": `${data.mcaduregpre}`,
+            "mfanoregpre": `${data.mfanoregpre}`,
+            "mcodiregpre": `${data.mcodiregpre}`,
+            "mndclregpre": `${data.mndclregpre}`,
+            "mnserregpre": `${data.mnserregpre}`,
+            "numeorden": `${data.numeorden}`,
+            "tipodespacho": `${data.tipodespacho}`,
+            "tipoaforo": `${data.tipoaforo}`,
+            "legajada": `${data.legajada}`,
+            "mod": `${data.mod}`
         };
 
         const resultAws = await axios.post(host_url, bodyJSON, {
@@ -71,9 +86,10 @@ class AwsConnection {
             return jsonError;
         })
         .catch((error) => {
+            console.log(error)
             var jsonError = {
                 'type' : 'E',
-                'message' : 'Error en la ejecución de la API para consulta de DAM.',
+                'message' : 'Error en la ejecución de la API para consulta de DUA.',
                 'error': error
             }
             return jsonError;

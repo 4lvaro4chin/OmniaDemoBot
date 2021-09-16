@@ -1,9 +1,9 @@
 const { WaterfallDialog, NumberPrompt } = require("botbuilder-dialogs");
-const { DuaHeader } = require('./duaHeader');
+const { DuaHeaderDialog } = require('./duaHeaderDialog');
 const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
-const DUA_HEADER = 'duaHeader';
+const DUA_HEADER_DIALOG = 'duaHeaderDialog';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
 class MenuDuaDialog extends HelperDialog {
@@ -16,7 +16,7 @@ class MenuDuaDialog extends HelperDialog {
             this.finalStep.bind(this)
         ]))
             .addDialog(new NumberPrompt(NUMBER_PROMPT, this.optionPromptValidator))
-            .addDialog(new DuaHeader(DUA_HEADER));
+            .addDialog(new DuaHeaderDialog(DUA_HEADER_DIALOG));
 
         this.initialDialogId = WATERFALL_DIALOG; 
     }
@@ -42,7 +42,7 @@ class MenuDuaDialog extends HelperDialog {
         switch(dialogData.option.toString()) {
             case '1':
                 console.log('Consultar DUA');
-                return await stepContext.beginDialog(DUA_HEADER);
+                return await stepContext.beginDialog(DUA_HEADER_DIALOG);
             case '2':
                 console.log('Consultar Series');
             default:

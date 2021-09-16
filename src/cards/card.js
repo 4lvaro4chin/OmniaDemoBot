@@ -328,7 +328,7 @@ class Cards {
                     "type": "Input.ChoiceSet",
                     "id": "inputAduana",
                     "label": "Aduana",
-                    "isRequired": true,
+                    //"isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
                     "value": "118",
                     "choices": [
@@ -467,7 +467,7 @@ class Cards {
                     "style": "text",
                     "id": "inputYear",
                     "label": "Año",
-                    "isRequired": true,
+                    //"isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
                     "maxLength": 4,
                     "value": ""
@@ -477,7 +477,7 @@ class Cards {
                     "style": "text",
                     "id": "inputDUA",
                     "label": "Número de Declaración",
-                    "isRequired": true,
+                    //"isRequired": true,
                     "errorMessage": "Es necesario indicar un valor.",
                     "maxLength": 6,
                     "value": ""
@@ -491,6 +491,13 @@ class Cards {
                         "id": "actionConsultar"
                     },
                     "style": "positive"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Cancelar",
+                    "data": {
+                        "id": "actionCancelar"
+                    }
                 }
             ]
         };
@@ -1516,14 +1523,31 @@ class Cards {
                         }
                     ]
                 },
+            ],
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Ver detalle",
+                    "data": {
+                        "id": "actionConsultar"
+                    },
+                    "style": "positive"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Cancelar",
+                    "data": {
+                        "id": "actionCancelar"
+                    }
+                }
             ]
         }
 
         return json;
     }
 
-    async dataDuaHeader(data) {
-        const json = {
+    async dataDUADetail(data) {
+        let json = {
             "type": "AdaptiveCard",
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "version": "1.3",
@@ -1532,591 +1556,70 @@ class Cards {
                     "type": "Container",
                     "items": [
                         {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "width": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `**${data.principal}**`,
-                                            "wrap": true,
-                                            "size": "Large"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "FactSet",
-                    "facts": [
-                        {
-                            "title": "**Número de Declaración**",
-                            "value": `${data.declaration_number}`
-                        },
-                        {
-                            "title": "**Fecha de Numeración**",
-                            "value": `${data.date_number}`
-                        },
-                        {
-                            "title": "**Modalidad de Despacho Aduanero**",
-                            "value": `${data.customs_modality}`
-                        },
-                        {
-                            "title": "**Declarante**",
-                            "value": `${data.declarant}`
+                            "type": "TextBlock",
+                            "text": "**DECLARACION DE MERCANCIAS**",
+                            "wrap": true
                         }
                     ],
+                    "style": "emphasis",
                     "separator": true
                 },
                 {
                     "type": "Container",
                     "items": [
                         {
-                            "type": "ColumnSet",
-                            "columns": [
+                            "type": "FactSet",
+                            "facts": [
                                 {
-                                    "type": "Column",
-                                    "width": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "**Incoterm**",
-                                            "wrap": true
-                                        }
-                                    ]
+                                    "title": "**Nº Serie/Total**",
+                                    "value": `${data.merchandise.serie}`
                                 },
                                 {
-                                    "type": "Column",
-                                    "width": "auto",
-                                    "height": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "**Monto**",
-                                            "wrap": true
-                                        }
-                                    ]
+                                    "title": "**Items Ejemplar B**",
+                                    "value": `${data.merchandise.items_b}`
+                                },
+                                {
+                                    "title": "**N° Declaración Precedente Serie**",
+                                    "value": `${data.merchandise.declaration_number}`
+                                },
+                                {
+                                    "title": "**Nº Certificado Reposición Item**",
+                                    "value": `${data.merchandise.certificate_number}`
+                                },
+                                {
+                                    "title": "**Cod.Apl.Ultr.**",
+                                    "value": `${data.merchandise.apl_code}`
+                                },
+                                {
+                                    "title": "**Puerto de Embarque Código**",
+                                    "value": `${data.merchandise.port_code}`
+                                },
+                                {
+                                    "title": "**Fecha Emb.**",
+                                    "value": `${data.merchandise.shipment_date}`
+                                },
+                                {
+                                    "title": "**Documento Transporte Detalle**",
+                                    "value": `${data.merchandise.shipment_document}`
+                                },
+                                {
+                                    "title": "**Nº Certificado Origen Fecha**",
+                                    "value": `${data.merchandise.certificate_date}`
+                                },
+                                {
+                                    "title": "**Cant. Unidad Comercial**",
+                                    "value": `${data.merchandise.quantity_unit}`
+                                },
+                                {
+                                    "title": "**Infor. Verificación / Cod.Exoneración**",
+                                    "value": `${data.merchandise.exoneration}`
                                 }
                             ]
                         }
                     ],
-                    "separator": true,
-                    "style": "emphasis",
-                    "bleed": true
-                },
-                {
-                    "type": "Container",
-                    "bleed": true,
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "width": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "USD CIF",
-                                            "wrap": true
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Column",
-                                    "width": "auto",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.usd_cif}`,
-                                            "wrap": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "style": "default"
-                },
-                {
-                    "type": "Container",
-                    "bleed": true,
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "width": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "FOB",
-                                            "wrap": true
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Column",
-                                    "width": "auto",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.fob}`,
-                                            "wrap": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "style": "default"
-                },
-                {
-                    "type": "Container",
-                    "bleed": true,
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "width": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Flete",
-                                            "wrap": true
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Column",
-                                    "width": "auto",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.flete}`,
-                                            "wrap": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "style": "default"
-                },
-                {
-                    "type": "Container",
-                    "bleed": true,
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "width": "stretch",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Seguro",
-                                            "wrap": true
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Column",
-                                    "width": "auto",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.seguro}`,
-                                            "wrap": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "style": "default"
+                    "separator": true
                 }
             ]
-        };
-
-        return json;
-    }
-
-    async dataDrawbackHeader2(data) {
-        const json = {
-            "type": "AdaptiveCard",
-            "body": [
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "size": "ExtraLarge",
-                                            "text": `${data.principal}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "FactSet",
-                            "spacing": "Large",
-                            "facts": [
-                                {
-                                    "title": "**Número de Declaración**",
-                                    "value": `${data.declaration_number}`
-                                },
-                                {
-                                    "title": "**Fecha de Numeración**",
-                                    "value": `${data.date_number}`
-                                },
-                                {
-                                    "title": "**Modalidad de Despacho Aduanero**",
-                                    "value": `${data.customs_modality}`
-                                },
-                                {
-                                    "title": "**Declarante**",
-                                    "value": `${data.declarant}`
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "style": "emphasis",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Large",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "weight": "Bolder",
-                                            "text": "**Incoterm**",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "weight": "Bolder",
-                                            "text": "**Monto**",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ],
-                    "bleed": true,
-                    "spacing": "Large"
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "USD CIF",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.usd_cif}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "FOB",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.fob}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Flete",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.flete}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Seguro",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.incoterm.seguro}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Monto Liquidado",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.liquidated_amount}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Monto Garantizado",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.guaranteed_amount}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type": "Column",
-                                    "spacing": "Medium",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Monto Cancelado",
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "stretch"
-                                },
-                                {
-                                    "type": "Column",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": `${data.cancelled_amount}`,
-                                            "wrap": true
-                                        }
-                                    ],
-                                    "width": "auto"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Container"
-                },
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "FactSet",
-                            "spacing": "Large",
-                            "facts": [
-                                {
-                                    "title": "**Fecha y Hora de Cancelación**",
-                                    "value": `${data.cancelled_date}`
-                                },
-                                {
-                                    "title": "**Tipo de Cancelación**",
-                                    "value": `${data.cancelled_type}`
-                                },
-                                {
-                                    "title": "**Banco**",
-                                    "value": `${data.bank}`
-                                },
-                                {
-                                    "title": "**Garantía**",
-                                    "value": `${data.guarantee}`
-                                },
-                                {
-                                    "title": "**Estado de la Declaración**",
-                                    "value": `${data.declaration_state}`
-                                },
-                                {
-                                    "title": "**Punto de llegada**",
-                                    "value": `${data.arrival}`
-                                },
-                                {
-                                    "title": "**Cantidad de Bultos**",
-                                    "value": `${data.quantity}`
-                                },
-                                {
-                                    "title": "**Peso Bruto (KG)**",
-                                    "value": `${data.weight}`
-                                },
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-            "version": "1.3",
-            "fallbackText": "This card requires Adaptive Cards v1.2 support to be rendered properly."
         };
 
         return json;

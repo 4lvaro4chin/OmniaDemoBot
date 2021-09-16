@@ -3,13 +3,14 @@ const { ReinicioSapDialog } = require("./reinicioSapDialog");
 const { DesbloqueoSapDialog } = require("./desbloqueoSapDialog");
 const { RegistroUsuarioDialog } = require("./registroUsuarioDialog");
 const { MenuDuaDialog } = require("./menuDuaDialog");
+const { DuaHeaderDialog } = require('./duaHeaderDialog');
 const { HelperDialog } = require("./helperDialog");
 
 const NUMBER_PROMPT = 'numberPrompt';
 const REINICIO_SAP_DIALOG = 'reinicioSapDialog';
 const DESBLOQUEO_SAP_DIALOG = 'desbloqueoSapDialog';
 const REGISTRO_USUARIO_DIALOG = 'registroUsuarioDialog';
-const MENU_DUA_DIALOG = 'menuDuaDialog';
+const DUA_HEADER_DIALOG = 'duaHeaderDialog';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
 class MenuInicialDialog extends HelperDialog {
@@ -25,7 +26,7 @@ class MenuInicialDialog extends HelperDialog {
             .addDialog(new DesbloqueoSapDialog(DESBLOQUEO_SAP_DIALOG))
             .addDialog(new ReinicioSapDialog(REINICIO_SAP_DIALOG))
             .addDialog(new RegistroUsuarioDialog(REGISTRO_USUARIO_DIALOG))
-            .addDialog(new MenuDuaDialog(MENU_DUA_DIALOG));
+            .addDialog(new DuaHeaderDialog(DUA_HEADER_DIALOG));
 
         this.initialDialogId = WATERFALL_DIALOG; 
     }
@@ -62,7 +63,7 @@ class MenuInicialDialog extends HelperDialog {
                 return await stepContext.beginDialog(REGISTRO_USUARIO_DIALOG);
             case '4':
                 console.log('Consultas DUA (SUNAT)');
-                return await stepContext.beginDialog(MENU_DUA_DIALOG);
+                return await stepContext.beginDialog(DUA_HEADER_DIALOG);
             default:
                 return await stepContext.endDialog();
         }

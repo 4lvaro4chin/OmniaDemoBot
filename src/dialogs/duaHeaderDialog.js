@@ -1,5 +1,5 @@
 const { WaterfallDialog, TextPrompt } = require("botbuilder-dialogs");
-const { CardFactory } = require("botbuilder");
+const { CardFactory, AttachmentLayoutTypes } = require("botbuilder");
 const { Cards } = require('../cards/card'); 
 const { AwsConnection } = require("../aws/awsConnection");
 const { HelperDialog } = require("./helperDialog");
@@ -7,13 +7,14 @@ const { HelperDialog } = require("./helperDialog");
 const TEXT_PROMPT = 'textPrompt';
 const WATERFALL_DIALOG = 'waterfallDialog';
 
-class DuaHeader extends HelperDialog {
+class DuaHeaderDialog extends HelperDialog {
     constructor(dialogId) {
         super(dialogId);
 
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
             this.initialStep.bind(this),
             this.getHeaderStep.bind(this),
+            this.getDetailStep.bind(this),
             this.finalStep.bind(this)
         ]))
             .addDialog(new TextPrompt(TEXT_PROMPT, this.promptValidator));
@@ -27,15 +28,12 @@ class DuaHeader extends HelperDialog {
         let card = new Cards();
         await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await card.formDuaHeader())]});
 
-        const promptText = 'Esperando que ingrese los datos.';
+        const promptText = 'Por favor indicar una acción a ejecutar.';
         return await stepContext.prompt(TEXT_PROMPT, { prompt: promptText });
     }
 
     async getHeaderStep(stepContext) {
         const dialogData = stepContext.options;
-
-        // get adaptive card input value
-        //console.log(JSON.stringify(stepContext.context.activity.value));
 
         switch(stepContext.context.activity.value.id) {            
             case 'actionConsultar':
@@ -44,19 +42,46 @@ class DuaHeader extends HelperDialog {
 
                 switch(awsResult.type){
                     case 'S':
-                        console.log(awsResult);
+                        dialogData.parametersDua = awsResult.response.body.parameters;
                         let cardSuccess = new Cards();
                         await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await cardSuccess.dataDUAHeader(awsResult.response.body))]});
-                        break;
+                        
+                        const promptText = 'Por favor indicar una acción a ejecutar.';
+                        return await stepContext.prompt(TEXT_PROMPT, { prompt: promptText });
                     default:
                         let cardError = new Cards();
                         await stepContext.context.sendActivity({ attachments: [CardFactory.adaptiveCard(await cardError.errorMessage(awsResult.message))]});
-                        break;
+                        return await stepContext;
                 }
-                break;
+            default:
+                return await stepContext;
         }
+    }
 
-        return await stepContext;
+    async getDetailStep(stepContext) {
+        const dialogData = stepContext.options;
+
+        switch(stepContext.context.activity.value.id) {            
+            case 'actionConsultar':
+                let awsConnection = new AwsConnection;
+
+                let cardSerie = new Cards();
+                let cardAttachments = [];
+                let index = 0;
+
+                while (index < parseInt(dialogData.parametersDua.series, 10)) {
+                    index ++;
+                    let awsResult = await awsConnection.getDuaDetail(index, dialogData.parametersDua);
+                    cardAttachments.push(CardFactory.adaptiveCard(await cardSerie.dataDUADetail(awsResult.response.body)));
+                }
+
+                await stepContext.context.sendActivity({ attachments: cardAttachments,
+                                                         attachmentLayout: AttachmentLayoutTypes.Carousel});
+
+                return await stepContext;
+            default:
+                return await stepContext;
+        }
     }
 
     async finalStep(stepContext){
@@ -71,4 +96,4 @@ class DuaHeader extends HelperDialog {
     }
 }
 
-module.exports.DuaHeader = DuaHeader;
+module.exports.DuaHeaderDialog = DuaHeaderDialog;
