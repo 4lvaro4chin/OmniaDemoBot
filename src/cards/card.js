@@ -1678,11 +1678,224 @@ class Cards {
                                     "title": "**País Adq/Dest.**",
                                     "value": `${data.merchandise.country_adq}`
                                 },
+                                {
+                                    "title": "**Reg. Apli.**",
+                                    "value": `${data.merchandise.region}`
+                                },
+                                {
+                                    "title": "**FOB Moneda Transacción Código**",
+                                    "value": `${data.merchandise.fob}`
+                                },
                             ]
                         }
                     ],
                     "separator": true
-                }
+                },
+                {
+                    "type": "Container",
+                    "separator": true,
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Concepto**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "**Importe**",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "FOB US$",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "value": `${data.merchandise.fob_usd}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "separator": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Flete US$",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "value": `${data.merchandise.flete}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Seguro US$",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "value": `${data.merchandise.insurance_usd}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Ajuste Valor US$",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "value": `${data.merchandise.fixed_usd}`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Valor Aduana US$",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "horizontalAlignment": "Right",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "value": `**${data.merchandise.customs_value}**`,
+                                            "wrap": true,
+                                            "horizontalAlignment": "Right"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "separator": true
+                },
             ]
         };
 
