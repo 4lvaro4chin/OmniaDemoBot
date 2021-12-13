@@ -17,7 +17,7 @@ class RegistroUsuarioDialog extends HelperDialog {
 
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
             this.unameStep.bind(this),
-             this.firstNameStep.bind(this),
+            this.firstNameStep.bind(this),
             this.lastNameStep.bind(this),
             this.emailStep.bind(this),
             this.celphoneStep.bind(this),
