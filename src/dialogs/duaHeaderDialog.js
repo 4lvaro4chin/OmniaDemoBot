@@ -97,7 +97,7 @@ class DuaHeaderDialog extends HelperDialog {
             return activity.type === 'message';
         }         
 
-        let numData = 0;
+        let numDoc = 0;
 
         if(activity.value.inputAduana){
             numDoc++;
