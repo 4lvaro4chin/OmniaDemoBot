@@ -92,8 +92,36 @@ class DuaHeaderDialog extends HelperDialog {
 
     async promptValidator(promptContext){
         const activity = promptContext.context._activity;
-        console.log(activity.value);
-        return activity.type === 'message' //&& activity.channelData.postBack;
+
+        if(activity.value.id === 'actionCancelar'){
+            return activity.type === 'message';
+        }         
+
+        let numData = 0;
+
+        if(activity.value.inputAduana){
+            numDoc++;
+            console.log(activity.value.inputAduana);
+            console.log(numDoc);
+        }   
+
+        if(activity.value.inputYear){
+            numDoc++;
+            console.log(activity.value.inputYear);
+            console.log(numDoc);
+        }   
+
+        if(activity.value.inputDUA){
+            numDoc++;
+            console.log(activity.value.inputDUA);
+            console.log(numDoc);
+        }   
+
+        if(numDoc === 3){
+            return activity.type === 'message' //&& activity.channelData.postBack;
+        }else{
+            return false;
+        }
     }
 }
 
