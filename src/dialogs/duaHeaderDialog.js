@@ -97,27 +97,15 @@ class DuaHeaderDialog extends HelperDialog {
             return activity.type === 'message';
         }         
 
-        let numDoc = 0;
+        let numInput = 0;
 
-        if(activity.value.inputAduana){
-            numDoc++;
-            console.log(activity.value.inputAduana);
-            console.log(numDoc);
-        }   
+        if(activity.value.inputAduana) numInput++;
 
-        if(activity.value.inputYear){
-            numDoc++;
-            console.log(activity.value.inputYear);
-            console.log(numDoc);
-        }   
+        if(activity.value.inputYear) numInput++;
 
-        if(activity.value.inputDUA){
-            numDoc++;
-            console.log(activity.value.inputDUA);
-            console.log(numDoc);
-        }   
+        if(activity.value.inputDUA) numInput++;
 
-        if(numDoc === 3){
+        if(numInput === 3){
             return activity.type === 'message' //&& activity.channelData.postBack;
         }else{
             return false;
