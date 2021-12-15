@@ -92,6 +92,7 @@ class DuaHeaderDialog extends HelperDialog {
 
     async promptValidator(promptContext){
         const activity = promptContext.context._activity;
+        console.log(activity.value.id);
         return activity.type === 'message' //&& activity.channelData.postBack;
     }
 }
